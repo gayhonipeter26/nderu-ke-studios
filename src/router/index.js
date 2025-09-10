@@ -4,13 +4,16 @@ import About from '../pages/About.vue'
 import Contact from '../pages/Contact.vue'
 import Blog from '../pages/Blog.vue'
 import Portfolio from '../pages/Portfolio.vue'   // ⬅️ add this
+import PhotoDetails from '../pages/PhotoDetails.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
   { path: '/about', name: 'About', component: About },
   { path: '/contact', name: 'Contact', component: Contact },
   { path: '/blog', name: 'Blog', component: Blog },
-  { path: '/portfolio', name: 'Portfolio', component: Portfolio }  // ⬅️ add this
+  { path: '/portfolio', name: 'Portfolio', component: Portfolio },  // ⬅️ add this
+  { path: '/portfolio', name: 'Portfolio', component: Portfolio },
+  { path: '/photo/:id', name: 'PhotoDetails', component: PhotoDetails, props: true }
 ]
 
 const router = createRouter({

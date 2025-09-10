@@ -49,48 +49,49 @@ export default {
   name: "Blog",
   data() {
     return {
-      posts: [
-        {
-          id: 1,
-          title: "Golden Hour Portraits",
-          excerpt: "Discover the magic of golden hour lighting and learn professional techniques for capturing stunning portrait photographs that showcase natural warmth and emotion.",
-          content: "Full article about golden hour portraits with tips, examples, and camera settings...",
-          image: "https://source.unsplash.com/800x500/?portrait,golden-hour",
-          category: "Portrait",
-          date: "March 15, 2024",
-          readTime: 5
-        },
-        {
-          id: 2,
-          title: "Street Photography in Nairobi",
-          excerpt: "Explore the vibrant streets of Nairobi through my lens, capturing authentic moments and the rich cultural tapestry of Kenya's bustling capital city.",
-          content: "Detailed insights into street photography in Nairobi, covering locations, safety tips, and techniques...",
-          image: "https://source.unsplash.com/800x500/?nairobi,street",
-          category: "Street",
-          date: "March 8, 2024",
-          readTime: 7
-        },
-        {
-          id: 3,
-          title: "Landscape Photography Mastery",
-          excerpt: "Transform ordinary landscapes into extraordinary visual stories with advanced composition techniques, lighting strategies, and post-processing workflows.",
-          content: "Full guide on how to take stunning landscapes with composition, lighting, and editing advice...",
-          image: "https://source.unsplash.com/800x500/?landscape,mountain",
-          category: "Landscape",
-          date: "February 28, 2024",
-          readTime: 8
-        },
-        {
-          id: 4,
-          title: "Wildlife in Their Natural Habitat",
-          excerpt: "Journey into Kenya's national parks to capture wildlife in their most authentic moments, showcasing the raw beauty of African fauna.",
-          content: "Wildlife photography guide covering equipment, techniques, and ethical considerations...",
-          image: "https://source.unsplash.com/800x500/?wildlife,africa",
-          category: "Wildlife",
-          date: "February 20, 2024",
-          readTime: 6
-        }
-      ]
+   posts: [
+  {
+    id: 1,
+    title: "Golden Hour Portraits",
+    excerpt: "Discover the magic of golden hour lighting and learn professional techniques for capturing stunning portrait photographs that showcase natural warmth and emotion.",
+    content: "Full article about golden hour portraits with tips, examples, and camera settings...",
+    image: "/images/portrait1.jpg",
+    category: "Portrait",
+    date: "March 15, 2024",
+    readTime: 5
+  },
+  {
+    id: 2,
+    title: "Street Photography in Nairobi",
+    excerpt: "Explore the vibrant streets of Nairobi through my lens, capturing authentic moments and the rich cultural tapestry of Kenya's bustling capital city.",
+    content: "Detailed insights into street photography in Nairobi, covering locations, safety tips, and techniques...",
+    image: "/images/street1.jpg",
+    category: "Street",
+    date: "March 8, 2024",
+    readTime: 7
+  },
+  {
+    id: 3,
+    title: "Landscape Photography Mastery",
+    excerpt: "Transform ordinary landscapes into extraordinary visual stories with advanced composition techniques, lighting strategies, and post-processing workflows.",
+    content: "Full guide on how to take stunning landscapes with composition, lighting, and editing advice...",
+    image: "/images/landscape1.jpg",
+    category: "Landscape",
+    date: "February 28, 2024",
+    readTime: 8
+  },
+  {
+    id: 4,
+    title: "Wildlife in Their Natural Habitat",
+    excerpt: "Journey into Kenya's national parks to capture wildlife in their most authentic moments, showcasing the raw beauty of African fauna.",
+    content: "Wildlife photography guide covering equipment, techniques, and ethical considerations...",
+    image: "/images/wildlife1.jpg",
+    category: "Wildlife",
+    date: "February 20, 2024",
+    readTime: 6
+  }
+]
+
     };
   }
 };

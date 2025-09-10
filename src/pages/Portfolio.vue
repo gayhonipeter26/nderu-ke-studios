@@ -55,13 +55,17 @@
                     </div>
                   </div>
                 </div>
-                <button class="view-btn">
-                  <svg viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
-                    <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
-                  </svg>
-                  <span>View Full</span>
-                </button>
+               <!-- ✅ New -->
+<router-link 
+  :to="`/photo/${index}`" 
+  class="view-btn"
+>
+  <svg viewBox="0 0 20 20" fill="currentColor">
+    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+    <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+  </svg>
+  <span>View Full</span>
+</router-link>
               </div>
             </div>
           </div>
@@ -107,12 +111,12 @@
 import { ref, computed } from 'vue'
 
 const activeFilter = ref('All')
-const categories = ['All', 'Wedding', 'Nature', 'Portrait', 'Street', 'Events']
+const categories = ['All', 'Wedding', 'Nature', 'Portrait', 'Street', ]
 
 // ✅ Use direct paths from public folder
 const photos = ref([
   {
-    src: '/images/wedding1.jpg',
+    src: '/images/wedding1.jpeg',
     title: "Wedding Bliss",
     description: "Capturing timeless love and cherished memories in perfect harmony.",
     category: "Wedding",
@@ -125,7 +129,7 @@ const photos = ref([
     tags: ["romantic", "outdoor", "golden-hour"]
   },
   {
-    src: '/images/nature1.jpg',
+    src: '/images/nature1.jpeg',
     title: "Nature's Symphony",
     description: "Peaceful landscapes and the serene calm of the wild outdoors.",
     category: "Nature",
@@ -138,7 +142,7 @@ const photos = ref([
     tags: ["landscape", "sunrise", "wildlife"]
   },
   {
-    src: '/images/portrait1.jpg',
+    src: '/images/portrait1.jpeg',
     title: "Soulful Portraits",
     description: "Every face tells a story worth remembering and celebrating.",
     category: "Portrait",
@@ -151,7 +155,7 @@ const photos = ref([
     tags: ["studio", "professional", "headshot"]
   },
   {
-    src: '/images/street1.jpg',
+    src: '/images/street1.jpeg',
     title: "Urban Stories",
     description: "Life unfolds in the bustling streets of the city.",
     category: "Street",
@@ -162,7 +166,22 @@ const photos = ref([
     date: "January 2024",
     location: "CBD, Nairobi",
     tags: ["urban", "candid", "lifestyle"]
+  },
+  {
+  src: '/images/event1.jpeg',
+  title: "Live Concert Vibes",
+  description: "An electrifying night filled with music, lights, and unstoppable energy.",
+  category: "Event",
+  featured: true,
+  views: "3.8k",
+  likes: "240",
+  rating: 5,
+  date: "February 2024",
+  location: "KICC, Nairobi",
+  tags: ["concert", "music", "festival", "crowd"]
   }
+  
+
 ])
 
 const filteredPhotos = computed(() => {
