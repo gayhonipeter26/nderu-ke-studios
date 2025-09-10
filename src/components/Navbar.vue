@@ -13,7 +13,7 @@
       </div>
 
       <!-- Navigation Links -->
-      <ul class="navbar-nav">
+      <ul :class="['navbar-nav', { 'mobile-open': isMobileMenuOpen }]" ref="navMenu">
         <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/about">About</router-link></li>
         <li><router-link to="/portfolio">Portfolio</router-link></li>
@@ -22,7 +22,13 @@
       </ul>
 
       <!-- Mobile Menu Toggle -->
-      <div class="mobile-toggle" @click="toggleMobileMenu">
+      <div
+        :class="['mobile-toggle', { active: isMobileMenuOpen }]"
+        @click="toggleMobileMenu"
+        aria-label="Toggle menu"
+        role="button"
+        tabindex="0"
+      >
         <span></span>
         <span></span>
         <span></span>
@@ -39,19 +45,19 @@ export default {
   data() {
     return {
       isMobileMenuOpen: false,
-      Logo // add it to data for template binding
+      Logo,
     };
   },
   methods: {
     toggleMobileMenu() {
       this.isMobileMenuOpen = !this.isMobileMenuOpen;
-      const navbar = document.querySelector('.navbar-nav');
-      navbar.classList.toggle('mobile-open');
+    },
+    closeMobileMenu() {
+      this.isMobileMenuOpen = false;
     }
   }
 };
 </script>
-
 
 <style scoped>
 /* CSS Custom Properties */
@@ -67,6 +73,7 @@ export default {
   --shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Navbar styles */
 .navbar {
   background: var(--navbar-bg);
   backdrop-filter: blur(20px);
@@ -106,7 +113,7 @@ export default {
   height: 50px;
   border-radius: var(--border-radius);
   overflow: hidden;
-  background: linear-gradient(135deg,white, #1f2937);
+  background: linear-gradient(135deg, white, #1f2937);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -137,11 +144,11 @@ export default {
   display: flex;
   flex-direction: column;
   line-height: 1;
-  color:black;
+  color: black;
 }
 
 .brand-name {
-   font-size: 1.5rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: navy; /* solid navy color */
   letter-spacing: -0.02em;
@@ -168,6 +175,8 @@ export default {
   padding: 0;
   gap: 8px;
   align-items: center;
+  position: relative;
+  transition: all 0.3s ease;
 }
 
 .navbar-nav li {
@@ -201,7 +210,7 @@ export default {
 }
 
 .navbar-nav a:hover::before,
-.navbar-nav a.router-link-active::before {
+.router-link-active::before {
   opacity: 0.1;
 }
 
@@ -210,26 +219,24 @@ export default {
   transform: translateY(-1px);
 }
 
-.navbar-nav a.router-link-active {
+.router-link-active {
   color: var(--text-primary);
   background: rgba(59, 130, 246, 0.1);
   border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
-.navbar-nav a span {
-  position: relative;
-  z-index: 1;
-}
-
-/* Mobile Menu Toggle */
+/* Mobile Toggle Styles */
 .mobile-toggle {
-  display: none;
+  display: none; /* Hidden on large screens */
   flex-direction: column;
   gap: 4px;
   cursor: pointer;
   padding: 8px;
   border-radius: var(--border-radius);
   transition: var(--transition);
+  width: 30px;
+  height: 24px;
+  justify-content: space-between;
 }
 
 .mobile-toggle:hover {
@@ -237,11 +244,23 @@ export default {
 }
 
 .mobile-toggle span {
-  width: 24px;
+  width: 100%;
   height: 2px;
   background: var(--text-primary);
   border-radius: 2px;
-  transition: var(--transition);
+  transition: all 0.3s ease;
+  display: block;
+}
+
+/* Animate toggle icon when active */
+.mobile-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.mobile-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.mobile-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
 }
 
 /* Responsive Design */
@@ -251,27 +270,12 @@ export default {
     min-height: 70px;
   }
 
-  .navbar-brand {
-    gap: 12px;
-  }
-
-  .logo-container {
-    width: 40px;
-    height: 40px;
-  }
-
-  .brand-name {
-    font-size: 1.25rem;
-  }
-
-  .brand-subtitle {
-    font-size: 0.7rem;
-  }
-
+  /* Show toggle button */
   .mobile-toggle {
     display: flex;
   }
 
+  /* Position menu absolutely on mobile */
   .navbar-nav {
     position: absolute;
     top: 100%;
@@ -286,38 +290,24 @@ export default {
     transform: translateY(-100%);
     opacity: 0;
     visibility: hidden;
-    transition: var(--transition);
+    transition: all 0.3s ease;
     box-shadow: var(--shadow);
   }
-
   .navbar-nav.mobile-open {
     transform: translateY(0);
     opacity: 1;
     visibility: visible;
   }
 
-  .navbar-nav li {
+  li {
     width: 100%;
   }
 
-  .navbar-nav a {
+  a {
     width: 100%;
     text-align: center;
     padding: 16px;
     font-size: 1rem;
-  }
-
-  /* Mobile menu toggle animation */
-  .mobile-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-
-  .mobile-toggle.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .mobile-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -6px);
   }
 }
 
@@ -326,27 +316,24 @@ export default {
     padding: 0 12px;
     min-height: 60px;
   }
-
   .brand-name {
     font-size: 1.1rem;
   }
-
   .brand-subtitle {
     font-size: 0.65rem;
   }
-
   .logo-container {
     width: 35px;
     height: 35px;
   }
 }
 
-/* Smooth scrolling enhancement */
+/* Smooth scroll */
 html {
   scroll-behavior: smooth;
 }
 
-/* Focus states for accessibility */
+/* Accessibility focus outline */
 .navbar-nav a:focus,
 .mobile-toggle:focus {
   outline: 2px solid var(--accent-color);
